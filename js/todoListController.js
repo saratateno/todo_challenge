@@ -5,6 +5,6 @@ todoList.controller("TodoListController", [function(){
 
   self.addItem = function() {
     self.items.push(self.newItem);
-    // self.newItem = null;
+    self.newItem = '';
   };
 }]);
