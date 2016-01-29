@@ -15,16 +15,13 @@
   <main>
     <h2>Mega Long To Do List</h2>
     <div>
-      <form class="form-horizontal">
-        <input type="text" >
-        <button class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+      <form class="form-horizontal" name="newTodoForm">
+        <input type="text" ng-model="todoCtrl.newItem" >
+        <button class="btn" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
       </form>
       <ul class="list-group">
-        <li class="list-group-item">
-          <strong>To Do Item 1</strong>
-        </li>
-        <li class="list-group-item">
-          <strong>To Do Item 2</strong>
+        <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
+          <strong>{{item}}</strong>
         </li>
       </ul>
     </div>
