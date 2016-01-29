@@ -12,7 +12,7 @@ describe('TodoListController', function() {
     expect(ctrl.items).toEqual([]);
   });
 
-  describe('when viewing to do list', function() {
+  describe('when viewing a to do list', function() {
     var item1 = "get sloshed";
     var item2 = "have a nice bath";
 
