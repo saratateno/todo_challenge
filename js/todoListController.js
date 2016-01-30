@@ -13,4 +13,9 @@ todoList.controller("TodoListController", [function(){
     self.editMode = true;
     self.editingPosition = self.items.indexOf(item);
   };
+
+  self.submitEdit = function(){
+    self.items[self.editingPosition].description = self.newDescription;
+  };
+
 }]);
