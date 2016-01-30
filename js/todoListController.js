@@ -9,13 +9,15 @@ todoList.controller("TodoListController", [function(){
     self.newItem = '';
   };
 
-  self.editingItem = function(item) {
-    self.editMode = true;
+  self.edit = function(item) {
     self.editingPosition = self.items.indexOf(item);
+    self.items[self.editingPosition].editMode = true;
+    self.newDescription = item.description;
   };
 
   self.submitEdit = function(){
     self.items[self.editingPosition].description = self.newDescription;
+    self.items[self.editingPosition].editMode = false;
   };
 
 }]);

@@ -29,13 +29,13 @@ describe('TodoListController', function() {
 
     it('locates a given item for editing within the items array', function() {
       ctrl.items = [item1, item2];
-      ctrl.editingItem(item2);
+      ctrl.edit(item2);
       expect(ctrl.editingPosition).toEqual(1);
     });
 
     it('saves a new edited description back into the array', function() {
       ctrl.items = [item1, item2];
-      ctrl.editingItem(item2);
+      ctrl.edit(item2);
       ctrl.newDescription = "Do something else";
       ctrl.submitEdit();
       expect(ctrl.items[1].description).toEqual("Do something else");

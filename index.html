@@ -13,18 +13,32 @@
 
   <body ng-controller="TodoListController as todoCtrl">
   <main>
+
     <h2>Mega Long To Do List</h2>
     <div>
       <form class="form-horizontal" name="newTodoForm">
         <input type="text" ng-model="todoCtrl.newItem" >
-        <button class="btn" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
+        <button class="btn add" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
       </form>
+    </div>
+
+    <div>
       <ul class="list-group">
         <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
-          <strong>{{item}}</strong>
+          <div class="todo-item" ng-hide="item.editMode">
+            <strong> {{ item.description }}</strong>
+            <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
+          </div>
+
+        <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
+          <input type="text" ng-model="todoCtrl.newDescription" >
+          <button class="btn submit-edit" ng-click="todoCtrl.submitEdit()"><i class="glyphicon glyphicon-tick"></i></button>
+        </form>
+
         </li>
       </ul>
     </div>
+
   </main>
   </body>
 </html>
