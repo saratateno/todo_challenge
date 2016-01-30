@@ -13,13 +13,24 @@ describe('TodoListController', function() {
   });
 
   describe('when viewing a to do list', function() {
-    var item1 = "get sloshed";
-    var item2 = "have a nice bath";
+    var description1 = "make appointment";
+    var description2 = "have a nice bath";
+    var item1 = { description: description1 };
+    var item2 = { description: description2 };
+    var todos = [ item1, item2 ];
 
     it('displays a list of todos', function() {
-      ctrl.addItem(item1)
-      ctrl.addItem(item2)
-      expect(ctrl.items).toEqual([item1, item2]);
+      ctrl.newItem = description1;
+      ctrl.addItem();
+      ctrl.newItem = description2;
+      ctrl.addItem();
+      expect(ctrl.items).toEqual(todos);
+    });
+
+    it('locates a given item for editing within the items array', function() {
+      ctrl.items = [item1, item2];
+      ctrl.editingItem(item2);
+      expect(ctrl.editingPosition).toEqual(1);
     });
   });
 });

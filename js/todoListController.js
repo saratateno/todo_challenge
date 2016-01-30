@@ -4,7 +4,13 @@ todoList.controller("TodoListController", [function(){
 
 
   self.addItem = function() {
-    self.items.push(self.newItem);
+    var item = { description: self.newItem };
+    self.items.push(item);
     self.newItem = '';
+  };
+
+  self.editingItem = function(item) {
+    self.editMode = true;
+    self.editingPosition = self.items.indexOf(item);
   };
 }]);
