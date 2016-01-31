@@ -5,7 +5,7 @@ describe('todo List feature', function() {
   var editBox = element(by.model('todoCtrl.newDescription'));
   var submitEdit = element(by.className('submit-edit'));
   var completeCheck = element(by.className('glyphicon-unchecked'));
-  var isCompleteIcon =  element(by.className('glyphicon-ok'));
+  var isCompleteIcon =  element(by.className('glyphicon-check'));
   var counter = element(by.binding('todoCtrl.count()'));
   var items = element.all(by.repeater(''));
   var submitItem = function() {
