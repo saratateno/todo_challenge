@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="TodoList">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>To Do List</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel='stylesheet' href='css/main.css'>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -12,44 +13,50 @@
   </head>
 
   <body ng-controller="TodoListController as todoCtrl">
-    <main>
+    <div class="container">
 
-      <h2>My To Do List</h2>
+      <div class="col-md-12 text-center">
+        <div>
+          <h2>My To Do List</h2>
+        </div>
 
-      <div>
-        <form class="form-horizontal" name="newTodoForm">
-          <input type="text" ng-model="todoCtrl.newItem" >
-          <button class="btn add" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
-        </form>
+        <div class="count lead" ng-hide="todoCtrl.nothingToDo()">
+          You have completed {{ todoCtrl.countComplete() }}/{{ todoCtrl.count() }} things on your to do list
+        </div>
+
+        <div class="count lead text-muted" ng-show="todoCtrl.nothingToDo()">
+          Relax. You have nothing to do.
+        </div>
       </div>
 
-      <span class="count" ng-hide="todoCtrl.nothingToDo()">
-        You have completed {{ todoCtrl.countComplete() }}/{{ todoCtrl.count() }} things on your to do list
-      </span>
-
-      <span class="count" ng-show="todoCtrl.nothingToDo()">
-        Relax! You have nothing to do.
-      </span>
-
-
-      <div>
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
-            <div class="todo-item" ng-hide="item.editMode">
-              <i class="glyphicon glyphicon-ok" ng-click="todoCtrl.markIncomplete(item)" ng-show="item.complete"></i>
-              <i class="glyphicon glyphicon-unchecked" ng-click="todoCtrl.markComplete(item)" ng-hide="item.complete"></i>
-              <strong> {{ item.description }}</strong>
-              <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
-            </div>
-
-          <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
-            <input type="text" ng-model="todoCtrl.newDescription" >
-            <button class="btn submit-edit" ng-click="todoCtrl.submitEdit()">OK</button>
+      <div class="col-md-12 text-center" id="todo-area">
+        <div id="enter-todos">
+          <form class="form-horizontal" name="newTodoForm">
+            <input type="text" ng-model="todoCtrl.newItem" >
+            <button class="btn add btn-success" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
           </form>
+        </div>
 
-          </li>
-        </ul>
+        <div class="text-left" id="todo-items">
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
+              <div class="todo-item" ng-hide="item.editMode">
+                <i class="glyphicon glyphicon-ok" ng-click="todoCtrl.markIncomplete(item)" ng-show="item.complete"></i>
+                <i class="glyphicon glyphicon-unchecked" ng-click="todoCtrl.markComplete(item)" ng-hide="item.complete"></i>
+                <strong> {{ item.description }}</strong>
+                <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
+              </div>
+
+            <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
+              <input type="text" ng-model="todoCtrl.newDescription" >
+              <button class="btn submit-edit" ng-click="todoCtrl.submitEdit()">OK</button>
+            </form>
+
+            </li>
+          </ul>
+        </div>
       </div>
-    </main>
+
+    </div>
   </body>
 </html>
