@@ -1,8 +1,7 @@
 todoList.controller("TodoListController", [function(){
   var self = this;
   var activeItemIndex = 0;
-  this.items = [];
-
+  self.items = [];
 
   self.addItem = function() {
     var item = { description: self.newItem };
@@ -23,6 +22,20 @@ todoList.controller("TodoListController", [function(){
 
   self.markComplete = function(item) {
     self.items[_position(item)].complete = true;
+  };
+
+  self.countComplete = function(){
+    var count = 0;
+    for (i = 0; i < self.items.length; i++) {
+      if(self.items[i].complete === true){
+          count += 1;
+      }
+    }
+    return count;
+  };
+
+  self.count = function() {
+    return self.items.length;
   };
 
   function _position(item) {

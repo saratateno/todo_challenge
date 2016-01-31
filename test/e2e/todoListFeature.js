@@ -6,6 +6,7 @@ describe('todo List feature', function() {
   var submitEdit = element(by.className('submit-edit'));
   var completeCheck = element(by.className('glyphicon-unchecked'));
   var isCompleteIcon =  element(by.className('glyphicon-ok'));
+  var counter = element(by.binding('todoCtrl.count()'));
   var items = element.all(by.repeater(''));
   var submitItem = function() {
     newItemBox.sendKeys('Buy some milk');
@@ -54,5 +55,7 @@ describe('todo List feature', function() {
     expect(completeCheck.isDisplayed()).toBe(true);
   });
 
-
+  it('tracks the number of things to do', function() {
+    expect(counter.getText()).toEqual("You have completed 0/1 things on your to do list");
+  });
 });

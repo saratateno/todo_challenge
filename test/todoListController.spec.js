@@ -40,5 +40,12 @@ describe('TodoListController', function() {
       ctrl.markComplete(item1);
       expect(ctrl.items[0].complete).toEqual(true);
     });
+
+    it('tracks the number of things done', function() {
+      ctrl.items = [item1, item2, "something else"];
+      ctrl.markComplete(item1);
+      ctrl.markComplete(item2);
+      expect(ctrl.countComplete()).toEqual(2);
+    });
   });
 });

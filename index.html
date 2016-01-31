@@ -14,13 +14,15 @@
   <body ng-controller="TodoListController as todoCtrl">
   <main>
 
-    <h2>Mega Long To Do List</h2>
+    <h2>My To Do List</h2>
     <div>
       <form class="form-horizontal" name="newTodoForm">
         <input type="text" ng-model="todoCtrl.newItem" >
         <button class="btn add" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
       </form>
     </div>
+
+    <span class="count">You have completed {{ todoCtrl.countComplete() }}/{{ todoCtrl.count() }} of your to do list</span>
 
     <div>
       <ul class="list-group">
@@ -30,7 +32,6 @@
             <i class="glyphicon glyphicon-unchecked" ng-click="item.complete = true" ng-hide="item.complete"></i>
             <strong> {{ item.description }}</strong>
             <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
-
           </div>
 
         <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
