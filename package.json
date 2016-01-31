@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "karma start test/karma.conf.js",
+    "test": "karma start test/karma.conf.js --browsers PhantomJS --single-run",
     "e2e": "protractor test/e2e/conf.js",
     "webdriver": "webdriver-manager start"
   },
