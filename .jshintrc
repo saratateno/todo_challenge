@@ -90,6 +90,6 @@
 
     // Custom Globals
     "globals"       : { "todoList": true,
-                        "angular": true,
+                        "angular": true
                          }        // additional predefined global variables
 }
