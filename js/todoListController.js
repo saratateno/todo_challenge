@@ -1,5 +1,6 @@
 todoList.controller("TodoListController", [function(){
   var self = this;
+  var activeItemIndex = 0;
   this.items = [];
 
 
@@ -10,14 +11,21 @@ todoList.controller("TodoListController", [function(){
   };
 
   self.edit = function(item) {
-    self.editingPosition = self.items.indexOf(item);
-    self.items[self.editingPosition].editMode = true;
+    activeItemIndex = _position(item);
+    self.items[activeItemIndex].editMode = true;
     self.newDescription = item.description;
   };
 
   self.submitEdit = function(){
-    self.items[self.editingPosition].description = self.newDescription;
-    self.items[self.editingPosition].editMode = false;
+    self.items[activeItemIndex].description = self.newDescription;
+    self.items[activeItemIndex].editMode = false;
   };
 
+  self.markComplete = function(item) {
+    self.items[_position(item)].complete = true;
+  };
+
+  function _position(item) {
+    return self.items.indexOf(item);
+  }
 }]);
