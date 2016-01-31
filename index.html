@@ -26,8 +26,11 @@
       <ul class="list-group">
         <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
           <div class="todo-item" ng-hide="item.editMode">
+            <i class="glyphicon glyphicon-ok" ng-click="item.complete = false" ng-show="item.complete"></i>
+            <i class="glyphicon glyphicon-unchecked" ng-click="item.complete = true" ng-hide="item.complete"></i>
             <strong> {{ item.description }}</strong>
             <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
+
           </div>
 
         <form class="form-horizontal" name="editForm"  ng-show="item.editMode">

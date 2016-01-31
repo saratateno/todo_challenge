@@ -4,6 +4,9 @@ describe('todo List feature', function() {
   var editButton = element(by.className('edit'));
   var editBox = element(by.model('todoCtrl.newDescription'));
   var submitEdit = element(by.className('submit-edit'));
+  var completeCheck = element(by.className('glyphicon-unchecked'));
+  var isCompleteIcon =  element(by.className('glyphicon-ok'));
+  var items = element.all(by.repeater(''));
   var submitItem = function() {
     newItemBox.sendKeys('Buy some milk');
     addItemButton.click();
@@ -19,7 +22,6 @@ describe('todo List feature', function() {
   });
 
   it('adds an item to the list', function() {
-    var items = element.all(by.repeater(''));
     expect(items.get(0).getText()).toEqual('Buy some milk');
   });
 
@@ -31,7 +33,6 @@ describe('todo List feature', function() {
 
   it('allows the same item to be added more than once', function() {
     submitItem();
-    var items = element.all(by.repeater(''));
     expect(items.get(1).getText()).toEqual('Buy some milk');
   });
 
@@ -39,8 +40,19 @@ describe('todo List feature', function() {
     editButton.click();
     editBox.sendKeys("y bars");
     submitEdit.click();
-    var items = element.all(by.repeater(''));
     expect(items.get(0).getText()).toEqual('Buy some milky bars');
   });
+
+  it('marks items as complete', function(){
+    completeCheck.click();
+    expect(isCompleteIcon.isDisplayed()).toBe(true);
+  });
+
+  it('unmarks items as complete', function(){
+    completeCheck.click();
+    isCompleteIcon.click();
+    expect(completeCheck.isDisplayed()).toBe(true);
+  });
+
 
 });
