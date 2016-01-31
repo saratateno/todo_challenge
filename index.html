@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="TodoList">
   <head>
     <meta charset="utf-8">
@@ -12,37 +12,44 @@
   </head>
 
   <body ng-controller="TodoListController as todoCtrl">
-  <main>
+    <main>
 
-    <h2>My To Do List</h2>
-    <div>
-      <form class="form-horizontal" name="newTodoForm">
-        <input type="text" ng-model="todoCtrl.newItem" >
-        <button class="btn add" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
-      </form>
-    </div>
+      <h2>My To Do List</h2>
 
-    <span class="count">You have completed {{ todoCtrl.countComplete() }}/{{ todoCtrl.count() }} of your to do list</span>
-
-    <div>
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
-          <div class="todo-item" ng-hide="item.editMode">
-            <i class="glyphicon glyphicon-ok" ng-click="item.complete = false" ng-show="item.complete"></i>
-            <i class="glyphicon glyphicon-unchecked" ng-click="item.complete = true" ng-hide="item.complete"></i>
-            <strong> {{ item.description }}</strong>
-            <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
-          </div>
-
-        <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
-          <input type="text" ng-model="todoCtrl.newDescription" >
-          <button class="btn submit-edit" ng-click="todoCtrl.submitEdit()">OK</button>
+      <div>
+        <form class="form-horizontal" name="newTodoForm">
+          <input type="text" ng-model="todoCtrl.newItem" >
+          <button class="btn add" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
         </form>
+      </div>
 
-        </li>
-      </ul>
-    </div>
+      <span class="count" ng-hide="todoCtrl.nothingToDo()">
+        You have completed {{ todoCtrl.countComplete() }}/{{ todoCtrl.count() }} things on your to do list
+      </span>
 
-  </main>
+      <span class="count" ng-show="todoCtrl.nothingToDo()">
+        Relax! You have nothing to do.
+      </span>
+
+
+      <div>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
+            <div class="todo-item" ng-hide="item.editMode">
+              <i class="glyphicon glyphicon-ok" ng-click="todoCtrl.markIncomplete(item)" ng-show="item.complete"></i>
+              <i class="glyphicon glyphicon-unchecked" ng-click="todoCtrl.markComplete(item)" ng-hide="item.complete"></i>
+              <strong> {{ item.description }}</strong>
+              <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
+            </div>
+
+          <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
+            <input type="text" ng-model="todoCtrl.newDescription" >
+            <button class="btn submit-edit" ng-click="todoCtrl.submitEdit()">OK</button>
+          </form>
+
+          </li>
+        </ul>
+      </div>
+    </main>
   </body>
 </html>

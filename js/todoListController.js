@@ -24,6 +24,10 @@ todoList.controller("TodoListController", [function(){
     self.items[_position(item)].complete = true;
   };
 
+  self.markIncomplete = function(item) {
+    self.items[_position(item)].complete = false;
+  };
+
   self.countComplete = function(){
     var count = 0;
     for (i = 0; i < self.items.length; i++) {
@@ -36,6 +40,10 @@ todoList.controller("TodoListController", [function(){
 
   self.count = function() {
     return self.items.length;
+  };
+
+  self.nothingToDo = function() {
+    return (self.count() - self.countComplete()) === 0;
   };
 
   function _position(item) {

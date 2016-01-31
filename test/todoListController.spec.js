@@ -41,6 +41,13 @@ describe('TodoListController', function() {
       expect(ctrl.items[0].complete).toEqual(true);
     });
 
+    it('marks an item as incomplete', function() {
+      ctrl.items = [item1];
+      ctrl.markComplete(item1);
+      ctrl.markIncomplete(item1)
+      expect(ctrl.items[0].complete).toEqual(false);
+    });
+
     it('tracks the number of things done', function() {
       ctrl.items = [item1, item2, "something else"];
       ctrl.markComplete(item1);
