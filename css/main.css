@@ -1,3 +1,20 @@
 .list-group .glyphicon-unchecked {
   font-size: 22px;
 }
+
+.list-group .glyphicon-check {
+  font-size: 22px;
+}
+
+.description {
+  max-width:
+}
+
+#page-title {
+  padding: 0.2em;
+}
+
+#enter-todos {
+  padding: 0.2em;
+  margin-bottom: 3em;
+}

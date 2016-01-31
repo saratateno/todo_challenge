@@ -17,7 +17,7 @@
 
       <div class="col-md-12 text-center">
         <div>
-          <h2>My To Do List</h2>
+          <h2 id="page-title">My To Do List</h2>
         </div>
 
         <div class="count lead" ng-hide="todoCtrl.nothingToDo()">
@@ -25,15 +25,21 @@
         </div>
 
         <div class="count lead text-muted" ng-show="todoCtrl.nothingToDo()">
-          Relax. You have nothing to do.
+          Relax. You have nothing left to do.
         </div>
       </div>
 
-      <div class="col-md-12 text-center" id="todo-area">
+      <div class="col-md-6 col-md-offset-3" id="todo-area">
         <div id="enter-todos">
           <form class="form-horizontal" name="newTodoForm">
-            <input type="text" ng-model="todoCtrl.newItem" >
-            <button class="btn add btn-success" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
+           <div>
+              <div class="input-group">
+                <input class="form-control" type="text" ng-model="todoCtrl.newItem" >
+                <span class="input-group-btn">
+                  <button class="btn add btn-success" ng-click="todoCtrl.addItem()"><i class="glyphicon glyphicon-plus"></i></button>
+                </span>
+              </div>
+            </div>
           </form>
         </div>
 
@@ -41,16 +47,23 @@
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="item in todoCtrl.items track by $index">
               <div class="todo-item" ng-hide="item.editMode">
-                <i class="glyphicon glyphicon-ok" ng-click="todoCtrl.markIncomplete(item)" ng-show="item.complete"></i>
-                <i class="glyphicon glyphicon-unchecked" ng-click="todoCtrl.markComplete(item)" ng-hide="item.complete"></i>
-                <strong> {{ item.description }}</strong>
-                <button class="btn edit" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
+                <div class="col-md-1" id="todo-status">
+                  <i class="glyphicon glyphicon-check" ng-click="todoCtrl.markIncomplete(item)" ng-show="item.complete"></i>
+                  <i class="glyphicon glyphicon-unchecked" ng-click="todoCtrl.markComplete(item)" ng-hide="item.complete"></i>
+                </div>
+                <strong class="description"> {{ item.description }}</strong>
+                <button class="btn edit pull-right" ng-click="todoCtrl.edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
               </div>
 
-            <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
-              <input type="text" ng-model="todoCtrl.newDescription" >
-              <button class="btn submit-edit" ng-click="todoCtrl.submitEdit()">OK</button>
-            </form>
+              <form class="form-horizontal" name="editForm"  ng-show="item.editMode">
+                <div class="input-group">
+                  <input class="form-control" type="text" ng-model="todoCtrl.newDescription" >
+                  <span class="input-group-btn">
+                    <button class="btn submit-edit" ng-click="todoCtrl.submitEdit()">OK</button>
+                  </span>
+                </div>
+              </form>
+
 
             </li>
           </ul>
